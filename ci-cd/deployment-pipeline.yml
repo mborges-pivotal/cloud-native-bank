@@ -29,6 +29,9 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
+    passed:
+    - push-quote
   - task: push-accounts-microservice
     file: cloud-native-bank/ci-cd/tasks/push-accounts-microservice/task.yml
     params:
@@ -42,6 +45,9 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
+    passed:
+    - push-accounts
   - task: push-portfolio-microservice
     file: cloud-native-bank/ci-cd/tasks/push-portfolio-microservice/task.yml
     params:
@@ -55,6 +61,9 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
+    passed:
+    - push-portfolio
   - task: push-web-microservice
     file: cloud-native-bank/ci-cd/tasks/push-web-microservice/task.yml
     params:
@@ -68,6 +77,9 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
+    passed:
+    - push-web
   - task: push-user-microservice
     file: cloud-native-bank/ci-cd/tasks/push-user-microservice/task.yml
     params:
