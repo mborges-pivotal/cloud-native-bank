@@ -8,8 +8,8 @@ image_resource:
     tag: "latest"
 
 inputs:
-  - name: pivotal-bank-demo
-  - name: cloud-native-bank
+- name: pivotal-bank-demo
+- name: cloud-native-bank
 
 run:
-  path: cloud-native-bank/ci-cd/push-quote-microservice/task.sh
+  path: cloud-native-bank/ci-cd/tasks/push-quote-microservice/task
