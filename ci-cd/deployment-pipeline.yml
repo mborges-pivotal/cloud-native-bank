@@ -1,0 +1,26 @@
+resources:
+- name: pivotal-bank-demo
+  type: git
+  source:
+    uri: https://github.com/Pivotal-Field-Engineering/pivotal-bank-demo.git
+    branch: master
+- name: cloud-native-bank
+  type: git
+  source:
+    uri: https://github.com/Pivotal-Field-Engineering/cloud-native-bank.git
+    branch: master
+
+jobs:
+- name: push-quote
+  public: true
+  plan:
+  - get: pivotal-bank-demo
+  - get: cloud-native-bank
+  - task: push-quote-microservice
+    file: cloud-native-bank/ci-d/tasks/push-quote-microservice/task.yml
+    params:
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-username}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: prod

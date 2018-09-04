@@ -1,0 +1,15 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: starkandwayne/concourse
+    tag: "latest"
+
+inputs:
+  - name: pivotal-bank-demo
+  - name: cloud-native-bank
+
+run:
+  path: cloud-native-bank/ci-cd/push-quote-microservice/task.sh
