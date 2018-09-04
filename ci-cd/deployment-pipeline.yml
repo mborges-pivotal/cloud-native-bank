@@ -17,7 +17,7 @@ jobs:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
   - task: push-quote-microservice
-    file: cloud-native-bank/ci-d/tasks/push-quote-microservice/task.yml
+    file: cloud-native-bank/ci-cd/tasks/push-quote-microservice/task.yml
     params:
       CF_API: {{cf-api}}
       CF_ORG: {{cf-organization}}
