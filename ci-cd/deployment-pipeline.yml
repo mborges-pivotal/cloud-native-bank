@@ -20,6 +20,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
     passed: [manual-production-release]
   - task: push-quote-microservice
     file: cloud-native-bank/ci-cd/tasks/push-quote-microservice/task.yml
@@ -34,6 +35,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
     passed: [manual-production-release]
   - task: push-accounts-microservice
     file: cloud-native-bank/ci-cd/tasks/push-accounts-microservice/task.yml
@@ -48,6 +50,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
     passed: [manual-production-release]
   - task: push-portfolio-microservice
     file: cloud-native-bank/ci-cd/tasks/push-portfolio-microservice/task.yml
@@ -62,6 +65,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
     passed: [manual-production-release]
   - task: push-web-microservice
     file: cloud-native-bank/ci-cd/tasks/push-web-microservice/task.yml
@@ -76,6 +80,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    trigger: true
     passed: [manual-production-release]
   - task: push-user-microservice
     file: cloud-native-bank/ci-cd/tasks/push-user-microservice/task.yml
@@ -89,6 +94,8 @@ jobs:
   public: true
   plan:
   - get: cloud-native-bank
+    trigger: true
+    passed: [push-user,push-web,push-portfolio,push-accounts,push-quote]
   - task: integration-test
     file: cloud-native-bank/ci-cd/tasks/integration-test/task.yml
     params:
