@@ -12,4 +12,4 @@ inputs:
 - name: cloud-native-bank
 
 run:
-  path: cloud-native-bank/ci-cd/tasks/push-quote-microservice/task
+  path: cloud-native-bank/ci-cd/tasks/push-quote-microservice/task.sh
