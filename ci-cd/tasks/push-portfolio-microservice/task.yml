@@ -1,0 +1,21 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: oskoss/cf
+
+params:
+  CF_ORG:
+  CF_PWD:
+  CF_SPACE:
+  CF_USER:
+  CF_API:
+
+inputs:
+- name: pivotal-bank-demo
+- name: cloud-native-bank
+
+run:
+  path: cloud-native-bank/ci-cd/tasks/push-portfolio-microservice/task.sh

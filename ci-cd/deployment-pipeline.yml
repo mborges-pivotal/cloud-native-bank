@@ -24,3 +24,55 @@ jobs:
       CF_USER: {{cf-username}}
       CF_PWD: {{cf-password}}
       CF_SPACE: prod
+- name: push-accounts
+  public: true
+  plan:
+  - get: pivotal-bank-demo
+  - get: cloud-native-bank
+  - task: push-accounts-microservice
+    file: cloud-native-bank/ci-cd/tasks/push-accounts-microservice/task.yml
+    params:
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-username}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: prod
+- name: push-portfolio
+  public: true
+  plan:
+  - get: pivotal-bank-demo
+  - get: cloud-native-bank
+  - task: push-portfolio-microservice
+    file: cloud-native-bank/ci-cd/tasks/push-portfolio-microservice/task.yml
+    params:
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-username}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: prod
+- name: push-web
+  public: true
+  plan:
+  - get: pivotal-bank-demo
+  - get: cloud-native-bank
+  - task: push-web-microservice
+    file: cloud-native-bank/ci-cd/tasks/push-web-microservice/task.yml
+    params:
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-username}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: prod
+- name: push-user
+  public: true
+  plan:
+  - get: pivotal-bank-demo
+  - get: cloud-native-bank
+  - task: push-user-microservice
+    file: cloud-native-bank/ci-cd/tasks/push-user-microservice/task.yml
+    params:
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-username}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: prod
