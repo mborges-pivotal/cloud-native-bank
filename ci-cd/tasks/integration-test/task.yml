@@ -1,0 +1,20 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: oskoss/cf
+
+params:
+  CF_ORG:
+  CF_PWD:
+  CF_SPACE:
+  CF_USER:
+  CF_API:
+
+inputs:
+- name: cloud-native-bank
+
+run:
+  path: cloud-native-bank/ci-cd/tasks/integration-test/task.sh

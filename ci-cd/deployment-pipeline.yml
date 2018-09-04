@@ -11,11 +11,16 @@ resources:
     branch: master
 
 jobs:
+- name: manual-production-release
+  public: true
+  plan:
+  - get: cloud-native-bank
 - name: push-quote
   public: true
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    passed: [manual-production-release]
   - task: push-quote-microservice
     file: cloud-native-bank/ci-cd/tasks/push-quote-microservice/task.yml
     params:
@@ -29,6 +34,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    passed: [manual-production-release]
   - task: push-accounts-microservice
     file: cloud-native-bank/ci-cd/tasks/push-accounts-microservice/task.yml
     params:
@@ -42,6 +48,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    passed: [manual-production-release]
   - task: push-portfolio-microservice
     file: cloud-native-bank/ci-cd/tasks/push-portfolio-microservice/task.yml
     params:
@@ -55,6 +62,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    passed: [manual-production-release]
   - task: push-web-microservice
     file: cloud-native-bank/ci-cd/tasks/push-web-microservice/task.yml
     params:
@@ -68,6 +76,7 @@ jobs:
   plan:
   - get: pivotal-bank-demo
   - get: cloud-native-bank
+    passed: [manual-production-release]
   - task: push-user-microservice
     file: cloud-native-bank/ci-cd/tasks/push-user-microservice/task.yml
     params:
@@ -76,3 +85,16 @@ jobs:
       CF_USER: {{cf-username}}
       CF_PWD: {{cf-password}}
       CF_SPACE: prod
+- name: integration-test
+  public: true
+  plan:
+  - get: cloud-native-bank
+  - task: integration-test
+    file: cloud-native-bank/ci-cd/tasks/integration-test/task.yml
+    params:
+      CF_API: {{cf-api}}
+      CF_ORG: {{cf-organization}}
+      CF_USER: {{cf-username}}
+      CF_PWD: {{cf-password}}
+      CF_SPACE: prod
+
