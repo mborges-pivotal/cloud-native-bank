@@ -6,8 +6,8 @@ cd pivotal-bank-demo/user-service
 cf api $CF_API --skip-ssl-validation
 cf login -u $CF_USER -p $CF_PWD -o "$CF_ORG" -s "$CF_SPACE"
 cf push  prod-user --no-route
-cf create-route "$CF_SPACE" cfapps.haas-115.pez.pivotal.io --hostname prod-user-"$CF_ORG"
-cf map-route prod-user cfapps.haas-115.pez.pivotal.io --hostname prod-user-"$CF_ORG"
+cf create-route "$CF_SPACE" "$CF_DOMAIN" --hostname prod-user-"$CF_ORG"
+cf map-route prod-user "$CF_DOMAIN" --hostname prod-user-"$CF_ORG"
 
 set -xe
 

@@ -7,16 +7,16 @@ image_resource:
     repository: oskoss/cf
 
 params:
+  NAME
   CF_ORG:
   CF_PWD:
   CF_SPACE:
   CF_USER:
   CF_API:
-  CF_DOMAIN:
 
 inputs:
 - name: pivotal-bank-demo
 - name: cloud-native-bank
 
 run:
-  path: cloud-native-bank/ci-cd/tasks/push-accounts-microservice/task.sh
+  path: cloud-native-bank/ci-cd/tasks/push-quote-microservice/task.sh

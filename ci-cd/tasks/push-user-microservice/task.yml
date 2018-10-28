@@ -12,6 +12,7 @@ params:
   CF_SPACE:
   CF_USER:
   CF_API:
+  CF_DOMAIN:
 
 inputs:
 - name: pivotal-bank-demo
